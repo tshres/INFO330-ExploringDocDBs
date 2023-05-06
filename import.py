@@ -2,11 +2,11 @@ import sqlite3
 import sys
 from pymongo import MongoClient
 
-mongo_client = MongoClient("mongodb://localhost:27017/")
-pokemon_db = mongo_client["pokemon"]
-pokemon_collection = pokemon_db["pokemon_data"]
+mongoClient = MongoClient("mongodb://localhost/pokemon")
+pokemonDB = mongoClient['pokemondb']
+pokemonColl = pokemonDB['pokemon_data'
 
-connection = sqlite3.connect('pokemon.sqlite')
+connection = sqlite3.connect("pokemon.sqlite")
 cursor = connection.cursor()
 
 query = """
@@ -24,7 +24,7 @@ data = cursor.fetchall()
 pokemon = {}
 for row in data:
     pokemon["name"] = row[0]
-    pokemon["id"] = row[1]
+    pokemon["_id"] = row[1]
     pokemon["pokedex_number"] = row[2]
     pokemon["types"] = row[3]
     pokemon["hp"] = row[4]
@@ -36,7 +36,7 @@ for row in data:
     pokemon["abilities"] = row[10]
 
 
-pokemonColl.insert_many(pokemon_data)
+pokemonColl.insert_many(pokemon)
 
 
 cursor.close()

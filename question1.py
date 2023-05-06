@@ -12,5 +12,5 @@ pokemonColl = pokemonDB['pokemon_data']
 pikachu_find = pokemonColl.find({"name": "Pikachu"})
 
 # Print
-for doc in find_pikachu:
-    print(doc)
+for pokemon in pikachu_find:
+    print(pokemon)
